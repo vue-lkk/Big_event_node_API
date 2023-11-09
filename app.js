@@ -54,6 +54,12 @@ app.use('/my/article',artCateRouter)
 // 为文章的路由挂载统一的访问前缀 /my/article
 app.use('/my/article',articleRouter)
 
+app.get('/', (req,res) => {
+  res.json({
+    code:0,
+    data:{name:'lkk',age:18}
+  })
+})
 // 错误中间件
 app.use(function (err, req, res, next) {
   console.log("@",err)
