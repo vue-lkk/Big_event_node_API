@@ -19,5 +19,13 @@ router.post('/register',exportJoi(reg_login_schema), register)
 // 用户登录
 router.post('/login',exportJoi(reg_login_schema), login)
 
+// 测试API
+router.get('/', (req,res) => {
+  res.json({
+    code:0,
+    data:{name:'lkk',age:18}
+  })
+})
+
 // 将路由对象共享出去
 module.exports = router

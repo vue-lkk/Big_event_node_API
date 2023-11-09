@@ -54,21 +54,16 @@ app.use('/my/article',artCateRouter)
 // 为文章的路由挂载统一的访问前缀 /my/article
 app.use('/my/article',articleRouter)
 
-app.get('/', (req,res) => {
-  res.json({
-    code:0,
-    data:{name:'lkk',age:18}
-  })
-})
+
 // 错误中间件
 app.use(function (err, req, res, next) {
   console.log("@",err)
   // 数据验证失败
-  if (err instanceof joi.ValidationError) return res.cc(err)
+  if (err instanceof joi.ValidationError) return res.send(err)
   // 捕获身份认证失败的错误
-  if(err.name === 'UnauthorizedError') return res.cc('身份认证失败！')
+  if(err.name === 'UnauthorizedError') return res.send('身份认证失败！')
   // 未知错误
-  res.cc(err)
+  res.send(err)
 })
 
 // 调用 app.listen 方法，指定端口号并启动web服务器
